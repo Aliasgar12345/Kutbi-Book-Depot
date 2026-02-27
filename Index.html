@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kutbi Book Depot — Books & Stationery, Dahod</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --primary:#1a3c6e;--primary-dark:#122a50;--accent:#e8451a;--gold:#f0a500;
+  --light:#f4f6fb;--border:#e0e4ee;--text:#222;--muted:#777;--white:#fff;
+}
+body{font-family:'Poppins',sans-serif;font-size:14px;color:var(--text);background:#fff}
+a{text-decoration:none;color:inherit}
+/* ── MARQUEE ── */
+.marquee-bar{background:var(--primary);color:#fff;font-size:12px;font-weight:500;padding:7px 0;overflow:hidden;white-space:nowrap}
+.marquee-inner{display:inline-block;animation:marquee 30s linear infinite;padding-left:100%}
+.marquee-inner span{margin:0 3rem}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+/* ── TOP BAR ── */
+.topbar{background:#fff;border-bottom:3px solid var(--primary);padding:0 3vw;display:flex;align-items:center;justify-content:space-between;height:72px;position:sticky;top:0;z-index:200;box-shadow:0 2px 16px rgba(0,0,0,.1)}
+.logo .logo-main{font-size:22px;font-weight:700;color:var(--primary);line-height:1.1}
+.logo .logo-main span{color:var(--accent)}
+.logo .logo-sub{font-size:10px;color:var(--muted);letter-spacing:.1em;text-transform:uppercase}
+.search-bar{flex:1;max-width:440px;margin:0 2rem;display:flex;border:2px solid var(--primary);border-radius:3px;overflow:hidden}
+.search-bar input{flex:1;border:none;outline:none;padding:9px 14px;font-size:13px;font-family:'Poppins',sans-serif}
+.search-bar button{background:var(--primary);border:none;color:#fff;padding:0 18px;cursor:pointer;font-size:16px;transition:background .2s}
+.search-bar button:hover{background:var(--accent)}
+.topbar-right{display:flex;align-items:center;gap:1.2rem}
+.icon-btn{display:flex;flex-direction:column;align-items:center;gap:2px;cursor:pointer;background:none;border:none;font-size:11px;color:var(--text);font-family:'Poppins',sans-serif;transition:color .2s;position:relative}
+.icon-btn:hover{color:var(--accent)}
+.icon-btn .ico{font-size:22px}
+.cbadge{position:absolute;top:-6px;right:-10px;background:var(--accent);color:#fff;font-size:10px;font-weight:700;border-radius:50%;width:18px;height:18px;display:flex;align-items:center;justify-content:center}
+/* ── MEGA NAV ── */
+.mega-nav{background:var(--primary);position:relative;z-index:190}
+.mega-nav-inner{display:flex;align-items:stretch;padding:0 3vw}
+.mnav-link,.mnav-trigger{color:#fff;font-size:12.5px;font-weight:500;padding:11px 15px;display:flex;align-items:center;gap:5px;cursor:pointer;white-space:nowrap;border:none;background:none;font-family:'Poppins',sans-serif;transition:background .2s;letter-spacing:.02em}
+.mnav-link:hover,.mnav-trigger:hover{background:rgba(255,255,255,.15)}
+.mnav-trigger::after{content:'▾';font-size:9px;opacity:.8;margin-left:2px}
+.mnav-deals{background:var(--accent)!important}
+.mnav-special{background:var(--gold)!important;color:#111!important}
+.mega-menu{display:none;position:absolute;top:100%;left:0;width:100%;background:#fff;border-top:3px solid var(--accent);box-shadow:0 10px 40px rgba(0,0,0,.15);z-index:300;padding:1.5rem 3vw}
+.mega-menu.open{display:flex;gap:2.5rem;flex-wrap:wrap}
+.mega-col h4{font-size:11.5px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.7rem;padding-bottom:.4rem;border-bottom:2px solid var(--accent)}
+.mega-col ul{list-style:none}
+.mega-col ul li a{display:block;padding:4px 0;font-size:12.5px;color:#444;transition:color .2s}
+.mega-col ul li a:hover{color:var(--accent);padding-left:4px}
+/* ── HERO GRID ── */
+.hero-grid{display:grid;grid-template-columns:220px 1fr 220px;grid-template-rows:1fr 1fr;gap:4px;padding:4px;background:#eee;min-height:440px}
+.h-side{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:1.5rem;text-align:center;cursor:pointer;transition:filter .2s}
+.h-side:hover{filter:brightness(.95)}
+.h-side .ico{font-size:4rem;margin-bottom:.7rem}
+.h-side .tag{font-size:10px;letter-spacing:.1em;text-transform:uppercase;font-weight:700;margin-bottom:.3rem}
+.h-side h2{font-size:17px;font-weight:700;line-height:1.25;margin-bottom:.5rem}
+.h-side p{font-size:11px;margin-bottom:.9rem;opacity:.75}
+.h-btn{display:inline-block;padding:6px 18px;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;cursor:pointer;border:none;font-family:'Poppins',sans-serif;transition:all .2s}
+.h-tall{grid-row:span 2}
+.hero-main{background:linear-gradient(135deg,#1a3c6e 0%,#0d2244 100%);display:flex;align-items:center;padding:2.5rem 3rem;gap:2rem;grid-row:span 2}
+.hero-main-text{flex:1}
+.hero-main-text .eyebrow{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);font-weight:600;margin-bottom:.6rem}
+.hero-main-text h1{font-size:clamp(22px,3.2vw,38px);font-weight:700;color:#fff;line-height:1.12;margin-bottom:.9rem}
+.hero-main-text h1 em{font-style:italic;color:var(--gold)}
+.hero-main-text p{color:rgba(255,255,255,.6);font-size:13px;line-height:1.75;margin-bottom:1.4rem;max-width:380px}
+.hero-btns{display:flex;gap:.8rem;flex-wrap:wrap}
+.btn-g{background:var(--gold);color:#111;border:none;padding:9px 24px;font-size:12px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;font-family:'Poppins',sans-serif;transition:all .2s}
+.btn-g:hover{background:#ffd740}
+.btn-w{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,.35);padding:9px 24px;font-size:12px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;font-family:'Poppins',sans-serif;transition:all .2s}
+.btn-w:hover{border-color:var(--gold);color:var(--gold)}
+.hero-main-emo{font-size:7rem;flex-shrink:0;filter:drop-shadow(0 8px 28px rgba(0,0,0,.45))}
+/* ── PROMO STRIP ── */
+.promo-strip{display:grid;grid-template-columns:repeat(4,1fr);border:1px solid var(--border);margin:6px 4px 0}
+.pi{display:flex;align-items:center;gap:.8rem;padding:1rem 1.3rem;border-right:1px solid var(--border)}
+.pi:last-child{border-right:none}
+.pi .pio{font-size:1.8rem;flex-shrink:0}
+.pi strong{display:block;font-size:12.5px;font-weight:700;color:var(--primary)}
+.pi span{font-size:11px;color:var(--muted)}
+/* ── SECTION ── */
+.sec{padding:1.8rem 3vw}
+.sec-title{font-size:18px;font-weight:700;color:var(--primary);margin-bottom:1.2rem;display:flex;align-items:center;gap:.6rem;text-transform:uppercase;letter-spacing:.02em}
+.sec-title::after{content:'';flex:1;height:2px;background:linear-gradient(to right,var(--accent),transparent)}
+/* ── CAT TILES ── */
+.cat-tiles{display:grid;grid-template-columns:repeat(7,1fr);gap:12px}
+.cat-tile{text-align:center;cursor:pointer;transition:transform .2s;padding:.5rem}
+.cat-tile:hover{transform:translateY(-4px)}
+.ctile-img{width:80px;height:80px;border-radius:50%;margin:0 auto .55rem;border:3px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:2rem;transition:border-color .2s;background:var(--light)}
+.cat-tile:hover .ctile-img{border-color:var(--accent);background:#fff}
+.ctile-name{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.04em;color:var(--text);line-height:1.3}
+/* ── BRAND BAR ── */
+.brand-bar{background:var(--light);border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:12px 3vw;display:flex;align-items:center;gap:1.5rem;flex-wrap:wrap}
+.brand-bar .bl{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;flex-shrink:0}
+.brand-chip{background:#fff;border:1.5px solid var(--border);padding:5px 16px;font-size:12px;font-weight:700;color:var(--primary);letter-spacing:.04em;cursor:pointer;transition:all .2s;text-transform:uppercase}
+.brand-chip:hover{border-color:var(--accent);color:var(--accent)}
+/* ── TABS ── */
+.tabs-hd{display:flex;gap:0;border-bottom:2px solid var(--border);margin-bottom:1.2rem;flex-wrap:wrap}
+.tab-b{padding:9px 18px;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;background:none;border:none;border-bottom:3px solid transparent;margin-bottom:-2px;font-family:'Poppins',sans-serif;transition:all .2s;text-transform:uppercase;letter-spacing:.04em}
+.tab-b.active{color:var(--accent);border-bottom-color:var(--accent)}
+.tab-b:hover{color:var(--accent)}
+.tab-panel{display:none}
+.tab-panel.active{display:grid;grid-template-columns:repeat(5,1fr);gap:14px}
+/* ── PRODUCT CARD ── */
+.pc{background:#fff;border:1px solid var(--border);overflow:hidden;transition:all .25s;position:relative}
+.pc:hover{box-shadow:0 8px 28px rgba(0,0,0,.11);transform:translateY(-3px)}
+.pc-img{height:185px;display:flex;align-items:center;justify-content:center;font-size:3.6rem;position:relative;overflow:hidden;transition:background .2s}
+.pc-disc{position:absolute;top:8px;left:8px;background:var(--accent);color:#fff;font-size:10px;font-weight:700;padding:2px 8px;border-radius:2px}
+.pc-wish{position:absolute;top:8px;right:8px;background:#fff;border:1px solid var(--border);width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;cursor:pointer;transition:all .2s;opacity:0}
+.pc:hover .pc-wish{opacity:1}
+.pc-info{padding:10px 12px 12px}
+.pc-brand{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;margin-bottom:2px}
+.pc-name{font-size:13px;font-weight:600;line-height:1.35;margin-bottom:5px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.pc-prow{display:flex;align-items:center;gap:.5rem;margin-bottom:9px;flex-wrap:wrap}
+.pc-price{font-size:15px;font-weight:700;color:var(--primary)}
+.pc-old{font-size:11.5px;color:var(--muted);text-decoration:line-through}
+.pc-atc{width:100%;background:var(--primary);color:#fff;border:none;padding:8px 0;font-size:11.5px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;font-family:'Poppins',sans-serif;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:.4rem}
+.pc-atc:hover{background:var(--accent)}
+.pc-atc.added{background:#2d7a4f}
+/* ── WIDE BANNER ── */
+.wide-banner{margin:0 3vw 1rem;background:linear-gradient(120deg,#1a3c6e 0%,#0d2244 100%);display:flex;align-items:center;padding:2rem 3rem;gap:2rem;min-height:150px;overflow:hidden;position:relative}
+.wide-banner::before{content:'';position:absolute;right:-60px;top:-60px;width:280px;height:280px;border-radius:50%;background:rgba(255,255,255,.05)}
+.wb-text{flex:1;color:#fff}
+.wb-text .tag{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);font-weight:700;margin-bottom:.4rem}
+.wb-text h2{font-size:22px;font-weight:700;margin-bottom:.3rem}
+.wb-text h2 em{font-style:italic;color:var(--gold)}
+.wb-text p{opacity:.65;font-size:12.5px}
+.wb-emo{font-size:3rem;display:flex;gap:.8rem;opacity:.8;flex-shrink:0}
+/* ── STORE INFO ── */
+.store-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem}
+.si-card{background:#fff;border:1px solid var(--border);padding:1.5rem;display:flex;gap:1rem;align-items:flex-start}
+.si-card.dark{background:var(--primary)}
+.si-ico{font-size:2rem;flex-shrink:0;margin-top:.1rem}
+.si-title{font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--primary);margin-bottom:.3rem}
+.si-card.dark .si-title{color:var(--gold)}
+.si-body{font-size:12.5px;color:var(--muted);line-height:1.7}
+.si-card.dark .si-body{color:rgba(255,255,255,.65)}
+.si-big{font-size:20px;font-weight:700;color:var(--accent)}
+.si-card.dark .si-big{color:#fff}
+/* ── CART SIDEBAR ── */
+.overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:400;backdrop-filter:blur(2px)}
+.overlay.open{display:block}
+.cart-sb{position:fixed;top:0;right:-450px;width:420px;max-width:100vw;height:100vh;background:#fff;z-index:500;display:flex;flex-direction:column;transition:right .35s cubic-bezier(.25,.46,.45,.94);box-shadow:-6px 0 28px rgba(0,0,0,.15)}
+.cart-sb.open{right:0}
+.csb-head{padding:1.2rem 1.5rem;background:var(--primary);color:#fff;display:flex;align-items:center;justify-content:space-between}
+.csb-head h3{font-size:15px;font-weight:600}
+.csb-close{background:none;border:none;color:#fff;font-size:22px;cursor:pointer;line-height:1}
+.csb-body{flex:1;overflow-y:auto;padding:1rem 1.5rem}
+.csb-empty{text-align:center;padding:3rem 1rem;color:var(--muted)}
+.csb-empty .eico{font-size:3rem;opacity:.35;margin-bottom:.8rem}
+.crow{display:flex;gap:.9rem;padding:.9rem 0;border-bottom:1px solid var(--border)}
+.crow-img{width:56px;height:68px;background:var(--light);flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:1.6rem;border:1px solid var(--border)}
+.crow-info{flex:1}
+.crow-name{font-size:12.5px;font-weight:600;line-height:1.35;margin-bottom:2px}
+.crow-brand{font-size:11px;color:var(--muted);margin-bottom:.4rem}
+.crow-ctrl{display:flex;align-items:center;gap:.5rem}
+.qb{width:23px;height:23px;border:1px solid var(--border);background:none;font-size:13px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-family:'Poppins',sans-serif;transition:all .2s}
+.qb:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.qv{font-size:13px;font-weight:600;min-width:18px;text-align:center}
+.rmb{font-size:11px;color:var(--muted);background:none;border:none;cursor:pointer;margin-left:.3rem;transition:color .2s}
+.rmb:hover{color:var(--accent)}
+.crow-price{font-size:14px;font-weight:700;color:var(--primary);align-self:flex-start;white-space:nowrap}
+.csb-foot{padding:1rem 1.5rem;border-top:2px solid var(--border)}
+.ctrow{display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin-bottom:.4rem}
+.cgrand{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem}
+.cgrand span:first-child{font-size:14px;font-weight:600}
+.cgrand span:last-child{font-size:20px;font-weight:700;color:var(--primary)}
+.co-btn{width:100%;background:var(--accent);color:#fff;border:none;padding:13px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;font-family:'Poppins',sans-serif;transition:background .2s}
+.co-btn:hover{background:#c0320a}
+/* ── PAYMENT MODAL ── */
+.modal-ov{display:none;position:fixed;inset:0;background:rgba(0,0,0,.6);z-index:600;align-items:center;justify-content:center;backdrop-filter:blur(3px)}
+.modal-ov.open{display:flex}
+.modal{background:#fff;width:440px;max-width:95vw;max-height:90vh;overflow-y:auto;border-radius:3px;animation:pop .3s ease}
+@keyframes pop{from{opacity:0;transform:scale(.95) translateY(12px)}to{opacity:1;transform:none}}
+.mhd{background:var(--primary);color:#fff;padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+.mhd h3{font-size:15px;font-weight:600}
+.mclose{background:none;border:none;color:#fff;font-size:22px;cursor:pointer}
+.mbd{padding:1.5rem}
+.pay-box{background:var(--light);border:1px solid var(--border);padding:1.2rem;text-align:center;margin-bottom:1.2rem}
+.pay-box .plbl{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.3rem}
+.pay-box .pamt{font-size:30px;font-weight:700;color:var(--primary)}
+.pm-lbl{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.8rem}
+.pm-list{display:flex;flex-direction:column;gap:.6rem;margin-bottom:1.2rem}
+.pm-opt{display:flex;align-items:center;gap:.9rem;padding:.9rem 1rem;border:1.5px solid var(--border);cursor:pointer;transition:all .2s}
+.pm-opt:hover,.pm-opt.sel{border-color:var(--primary);background:rgba(26,60,110,.05)}
+.pmdot{width:16px;height:16px;border-radius:50%;border:1.5px solid #ccc;flex-shrink:0;transition:all .2s}
+.pm-opt.sel .pmdot{border-color:var(--primary);background:var(--primary)}
+.pmico{font-size:1.2rem}
+.pmnm{font-size:13px;font-weight:600}
+.pmds{font-size:11px;color:var(--muted)}
+.upi-wrap{margin-top:.8rem;display:none}
+.upi-wrap.show{display:block}
+.upi-wrap input{width:100%;padding:9px 12px;border:1.5px solid var(--border);font-family:'Poppins',sans-serif;font-size:13px;outline:none;transition:border .2s}
+.upi-wrap input:focus{border-color:var(--primary)}
+.pay-main-btn{width:100%;background:var(--primary);color:#fff;border:none;padding:13px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;font-family:'Poppins',sans-serif;transition:background .2s}
+.pay-main-btn:hover{background:var(--accent)}
+.success-p{display:none;text-align:center;padding:2.5rem 1.5rem}
+.success-p.show{display:block}
+.success-p .sico{font-size:3.5rem;margin-bottom:.8rem}
+.success-p h3{font-size:18px;font-weight:700;color:var(--primary);margin-bottom:.6rem}
+.success-p p{color:var(--muted);font-size:13px;line-height:1.7;margin-bottom:.6rem}
+.oid{font-size:12px;font-weight:700;color:var(--accent);letter-spacing:.06em}
+.cont-btn{margin-top:1rem;background:var(--primary);color:#fff;border:none;padding:10px 28px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif;transition:background .2s}
+.cont-btn:hover{background:var(--accent)}
+/* ── MY ORDERS ── */
+.order-card{border:1px solid var(--border);border-radius:3px;margin-bottom:1rem;overflow:hidden}
+.order-card-head{background:var(--light);padding:.7rem 1rem;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--border)}
+.order-card-id{font-size:12px;font-weight:700;color:var(--primary);letter-spacing:.04em}
+.order-card-date{font-size:11px;color:var(--muted)}
+.order-status{font-size:10.5px;font-weight:700;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:.05em}
+.status-confirmed{background:#e8f5e9;color:#2d7a4f}
+.status-processing{background:#e3f2fd;color:#1565c0}
+.order-card-items{padding:.7rem 1rem}
+.order-item-row{display:flex;align-items:center;gap:.7rem;padding:.4rem 0;border-bottom:1px solid var(--border)}
+.order-item-row:last-child{border-bottom:none}
+.oitem-emo{font-size:1.4rem;width:32px;text-align:center;flex-shrink:0}
+.oitem-name{flex:1;font-size:12.5px;font-weight:500}
+.oitem-qty{font-size:11.5px;color:var(--muted)}
+.oitem-price{font-size:13px;font-weight:700;color:var(--primary)}
+.order-card-foot{background:var(--light);padding:.6rem 1rem;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--border)}
+.order-total-lbl{font-size:12px;color:var(--muted)}
+.order-total-val{font-size:15px;font-weight:700;color:var(--primary)}
+.order-pay-badge{font-size:11px;font-weight:600;color:#2d7a4f;background:#e8f5e9;padding:3px 10px;border-radius:20px}
+/* ── UPI PAYMENT SCREEN ── */
+.upi-screen{display:none;padding:1.5rem}
+.upi-screen.show{display:block}
+.upi-screen-hd{background:var(--primary);color:#fff;padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;margin:-1px}
+.upi-screen-hd h3{font-size:15px;font-weight:600}
+.upi-store-card{background:linear-gradient(135deg,#1a3c6e,#0d2244);border-radius:4px;padding:1.2rem 1.4rem;margin-bottom:1rem;display:flex;align-items:center;gap:1rem}
+.upi-store-ico{font-size:2.2rem;background:rgba(255,255,255,.12);width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.upi-store-info .sname{font-size:15px;font-weight:700;color:#fff}
+.upi-store-info .stype{font-size:11px;color:rgba(255,255,255,.6);margin-top:2px}
+.upi-amt-display{background:#f0f9f4;border:2px solid #2d7a4f;border-radius:4px;padding:1rem 1.2rem;text-align:center;margin-bottom:1rem}
+.upi-amt-display .albl{font-size:11px;color:#2d7a4f;font-weight:700;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.2rem}
+.upi-amt-display .aval{font-size:30px;font-weight:700;color:#1a3c6e}
+.upi-id-box{background:#fffde7;border:1.5px dashed #f0a500;border-radius:4px;padding:.9rem 1.2rem;margin-bottom:1rem;display:flex;align-items:center;justify-content:space-between;gap:.8rem}
+.upi-id-box .uid-lbl{font-size:10.5px;color:#777;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.2rem}
+.upi-id-box .uid-val{font-size:14px;font-weight:700;color:#1a3c6e;letter-spacing:.02em;word-break:break-all}
+.copy-btn{background:var(--gold);border:none;color:#111;font-size:11px;font-weight:700;padding:6px 12px;cursor:pointer;font-family:'Poppins',sans-serif;white-space:nowrap;transition:all .2s;flex-shrink:0}
+.copy-btn:hover{background:#ffd740}
+.copy-btn.copied{background:#2d7a4f;color:#fff}
+.qr-wrap{text-align:center;margin-bottom:1rem}
+.qr-wrap .qlbl{font-size:11px;color:var(--muted);margin-bottom:.6rem;font-weight:500;text-transform:uppercase;letter-spacing:.06em}
+.qr-box{display:inline-block;padding:10px;background:#fff;border:2px solid var(--border);border-radius:4px;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.upi-apps{display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;margin-bottom:1rem}
+.upi-app{display:flex;flex-direction:column;align-items:center;gap:.3rem;padding:.5rem .7rem;border:1px solid var(--border);border-radius:4px;cursor:pointer;transition:all .2s;min-width:60px}
+.upi-app:hover{border-color:var(--primary);background:var(--light);transform:translateY(-2px)}
+.upi-app .aico{font-size:1.5rem}
+.upi-app .aname{font-size:9px;font-weight:600;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+.upi-confirm-btn{width:100%;background:#2d7a4f;color:#fff;border:none;padding:13px;font-size:13px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;cursor:pointer;font-family:'Poppins',sans-serif;transition:background .2s;display:flex;align-items:center;justify-content:center;gap:.5rem}
+.upi-confirm-btn:hover{background:#1e5c39}
+.upi-steps{display:flex;gap:.5rem;margin-bottom:1rem;background:var(--light);padding:.8rem 1rem;border-radius:3px}
+.upi-step{flex:1;text-align:center}
+.upi-step .snum{width:22px;height:22px;background:var(--primary);color:#fff;border-radius:50%;font-size:11px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto .3rem}
+.upi-step .stxt{font-size:10px;color:var(--muted);line-height:1.4}
+.step-arrow{color:var(--muted);font-size:14px;align-self:center;flex-shrink:0}
+/* ── TOAST ── */
+.toast{position:fixed;bottom:1.5rem;left:50%;transform:translateX(-50%) translateY(90px);background:#111;color:#fff;padding:10px 22px;font-size:13px;font-weight:500;z-index:700;box-shadow:0 4px 20px rgba(0,0,0,.25);transition:transform .3s cubic-bezier(.25,.46,.45,.94);white-space:nowrap;border-left:4px solid var(--gold);border-radius:2px}
+.toast.show{transform:translateX(-50%) translateY(0)}
+/* ── FOOTER ── */
+.footer{background:var(--primary-dark);color:rgba(255,255,255,.65);padding:2.5rem 3vw 1.2rem}
+.fg{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:2rem;margin-bottom:1.5rem}
+.fl-main{font-size:20px;font-weight:700;color:#fff;margin-bottom:.5rem}
+.fl-main span{color:var(--gold)}
+.fd{font-size:12px;line-height:1.75;margin-bottom:.8rem}
+.fc p{font-size:12px;margin-bottom:.3rem;display:flex;align-items:center;gap:.4rem}
+.fc-ico{color:var(--gold)}
+.fcol h4{font-size:11.5px;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.8rem;padding-bottom:.4rem;border-bottom:2px solid rgba(255,255,255,.1)}
+.fcol ul{list-style:none}
+.fcol ul li{margin-bottom:.35rem}
+.fcol ul li a{font-size:12px;color:rgba(255,255,255,.6);transition:color .2s}
+.fcol ul li a:hover{color:var(--gold)}
+.fbot{border-top:1px solid rgba(255,255,255,.1);padding-top:1rem;display:flex;align-items:center;justify-content:space-between;font-size:11.5px;color:rgba(255,255,255,.35);flex-wrap:wrap;gap:.5rem}
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){.tab-panel.active{grid-template-columns:repeat(4,1fr)}.cat-tiles{grid-template-columns:repeat(5,1fr)}.fg{grid-template-columns:1fr 1fr}.store-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:768px){.mega-nav{display:none}.hero-grid{grid-template-columns:1fr 1.5fr;grid-template-rows:auto auto auto}.h-tall{grid-row:span 2}.tab-panel.active{grid-template-columns:repeat(2,1fr)}.promo-strip{grid-template-columns:1fr 1fr}.cat-tiles{grid-template-columns:repeat(4,1fr)}.fg{grid-template-columns:1fr 1fr}.search-bar{max-width:240px;margin:0 .8rem}}
+@media(max-width:480px){.hero-grid{grid-template-columns:1fr}.tab-panel.active{grid-template-columns:repeat(2,1fr)}.cat-tiles{grid-template-columns:repeat(3,1fr)}.hero-main{flex-direction:column;padding:1.5rem}.hero-main-emo{display:none}.store-grid{grid-template-columns:1fr}.fg{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<!-- MARQUEE TICKER -->
+<div class="marquee-bar">
+  <div class="marquee-inner">
+    <span>📚 ONE STOP SOLUTION FOR ALL YOUR BOOK & STATIONERY NEEDS</span>
+    <span>✏️ FREE DELIVERY IN DAHOD</span>
+    <span>🎒 SCHOOL BOOKS · STATIONERY · ART SUPPLIES · PARTY ITEMS</span>
+    <span>📞 CALL US: 094287 78971</span>
+    <span>⭐ 5.0 RATED · TRUSTED BY DAHOD FAMILIES SINCE 30+ YEARS</span>
+    <span>🛒 SHOP NOW AND SAVE UP TO 50% ON SELECTED ITEMS</span>
+    <span>📚 ONE STOP SOLUTION FOR ALL YOUR BOOK & STATIONERY NEEDS</span>
+    <span>✏️ FREE DELIVERY IN DAHOD</span>
+  </div>
+</div>
+
+<!-- HEADER -->
+<header class="topbar">
+  <div class="logo">
+    <div class="logo-main">Kutbi <span>Book Depot</span></div>
+    <div class="logo-sub">Dahod, Gujarat · Est. 1990</div>
+  </div>
+  <div class="search-bar">
+    <input type="text" placeholder="Search books, stationery, art supplies, party items…" />
+    <button>🔍</button>
+  </div>
+  <div class="topbar-right">
+    <button class="icon-btn" onclick="toggleCart()">
+      <span class="ico" style="position:relative">🛒<span class="cbadge" id="cartBadge">0</span></span>
+      <span>Cart</span>
+    </button>
+    <button class="icon-btn" onclick="toggleOrders()"><span class="ico" style="position:relative">📦<span class="cbadge" id="orderBadge" style="display:none">0</span></span><span>My Orders</span></button>
+    <button class="icon-btn"><span class="ico">👤</span><span>Account</span></button>
+    <button class="icon-btn"><span class="ico">♡</span><span>Wishlist</span></button>
+  </div>
+</header>
+
+<!-- MEGA NAV -->
+<nav class="mega-nav">
+  <div class="mega-nav-inner">
+    <a class="mnav-link" href="#">🏠 Home</a>
+    <a class="mnav-link" href="#">DOMS</a>
+    <a class="mnav-link" href="#">Navneet</a>
+    <span class="mnav-trigger" onclick="toggleMenu('school')">📚 SCHOOL SUPPLIES</span>
+    <span class="mnav-trigger" onclick="toggleMenu('office')">🗂 OFFICE SUPPLIES</span>
+    <span class="mnav-trigger" onclick="toggleMenu('art')">🎨 ART & CRAFT</span>
+    <span class="mnav-trigger" onclick="toggleMenu('party')">🎉 PARTY ITEMS</span>
+    <a class="mnav-link mnav-deals" href="#">🔥 Deals Today</a>
+    <a class="mnav-link mnav-special" href="#">⭐ Special Prices</a>
+  </div>
+  <div class="mega-menu" id="menu-school">
+    <div class="mega-col"><h4>Stationery Basics</h4><ul><li><a href="#">Pencils</a></li><li><a href="#">Erasers</a></li><li><a href="#">Sharpeners</a></li><li><a href="#">Mechanical Pencils</a></li><li><a href="#">Geometry Box</a></li><li><a href="#">Glue &amp; Adhesive</a></li></ul></div>
+    <div class="mega-col"><h4>Pens &amp; Markers</h4><ul><li><a href="#">Blue Ball Pens</a></li><li><a href="#">Gel Pens</a></li><li><a href="#">Roller Ball Pen</a></li><li><a href="#">Fountain Pens</a></li><li><a href="#">Highlighters</a></li><li><a href="#">Permanent Markers</a></li><li><a href="#">Whiteboard Markers</a></li></ul></div>
+    <div class="mega-col"><h4>Drawing</h4><ul><li><a href="#">Wax Crayons</a></li><li><a href="#">Colour Pencils</a></li><li><a href="#">Sketch Pens</a></li><li><a href="#">Water Colours</a></li><li><a href="#">Drawing Books</a></li></ul></div>
+    <div class="mega-col"><h4>Books</h4><ul><li><a href="#">Colouring Books</a></li><li><a href="#">Activity Books</a></li><li><a href="#">Story Books</a></li><li><a href="#">Text Books</a></li><li><a href="#">Navneet</a></li></ul></div>
+  </div>
+  <div class="mega-menu" id="menu-office">
+    <div class="mega-col"><h4>Stationery</h4><ul><li><a href="#">Ball Pens</a></li><li><a href="#">Erasers</a></li><li><a href="#">Staplers</a></li><li><a href="#">Punch Machine</a></li><li><a href="#">Calculator</a></li></ul></div>
+    <div class="mega-col"><h4>Files &amp; Folders</h4><ul><li><a href="#">Plastic Files</a></li><li><a href="#">Document Folders</a></li><li><a href="#">Report Files</a></li></ul></div>
+    <div class="mega-col"><h4>Table Stationery</h4><ul><li><a href="#">Stamp Pads</a></li><li><a href="#">Pins &amp; Clips</a></li><li><a href="#">Whiteboard Markers</a></li></ul></div>
+  </div>
+  <div class="mega-menu" id="menu-art">
+    <div class="mega-col"><h4>Colours</h4><ul><li><a href="#">Wax Crayons</a></li><li><a href="#">Colour Pencils</a></li><li><a href="#">Poster Colours</a></li><li><a href="#">Acrylic Colour</a></li><li><a href="#">Oil Pastels</a></li><li><a href="#">Water Colours</a></li></ul></div>
+    <div class="mega-col"><h4>Tools</h4><ul><li><a href="#">Drawing Brushes</a></li><li><a href="#">Canvas Boards</a></li><li><a href="#">Colour Palette</a></li><li><a href="#">3D Liners</a></li><li><a href="#">Sketch Pens</a></li></ul></div>
+  </div>
+  <div class="mega-menu" id="menu-party">
+    <div class="mega-col"><h4>Balloons</h4><ul><li><a href="#">Pastel Balloons</a></li><li><a href="#">Chrome Balloons</a></li><li><a href="#">Confetti Balloons</a></li><li><a href="#">Heart Balloons</a></li></ul></div>
+    <div class="mega-col"><h4>Birthday Combos</h4><ul><li><a href="#">Birthday Boy</a></li><li><a href="#">Birthday Girl</a></li><li><a href="#">Theme Birthday</a></li><li><a href="#">1st Birthday</a></li></ul></div>
+    <div class="mega-col"><h4>Accessories</h4><ul><li><a href="#">Caps &amp; Crowns</a></li><li><a href="#">Arch Strips</a></li><li><a href="#">Party Glasses</a></li><li><a href="#">Balloon Glue Dots</a></li></ul></div>
+  </div>
+</nav>
+
+<!-- HERO GRID -->
+<div class="hero-grid">
+  <!-- Left tall -->
+  <div class="h-side h-tall" style="background:linear-gradient(160deg,#e3f2fd,#bbdefb)">
+    <div class="ico">🎉</div>
+    <div class="tag" style="color:var(--accent)">New Arrivals</div>
+    <h2 style="color:var(--primary)">Party<br>Products</h2>
+    <p style="color:var(--muted)">Balloons, banners<br>&amp; décor combos</p>
+    <button class="h-btn" style="background:var(--accent);color:#fff" onclick="filterTab('party')">Shop Now</button>
+  </div>
+  <!-- Main centre hero -->
+  <div class="hero-main">
+    <div class="hero-main-text">
+      <div class="eyebrow">Dahod's Most Trusted Book Store</div>
+      <h1>Give Wings To<br>Your Child's <em>Dream</em></h1>
+      <p>One-stop destination for books, stationery, art supplies and party décor. Serving Dahod families with 5000+ products from 65+ trusted brands.</p>
+      <div class="hero-btns">
+        <button class="btn-g" onclick="document.getElementById('prod-sec').scrollIntoView({behavior:'smooth'})">Shop Now</button>
+        <button class="btn-w" onclick="document.getElementById('cat-sec').scrollIntoView({behavior:'smooth'})">Browse Categories</button>
+      </div>
+    </div>
+    <div class="hero-main-emo">📚</div>
+  </div>
+  <!-- Right top -->
+  <div class="h-side" style="background:linear-gradient(135deg,#fff3e0,#ffe0b2)">
+    <div class="ico">✏️</div>
+    <div class="tag" style="color:var(--accent)">65+ Brands</div>
+    <h2 style="color:var(--primary);font-size:16px">Office Stationery</h2>
+    <p style="color:var(--muted);font-size:11px">Everything for<br>your workspace</p>
+    <button class="h-btn" style="background:var(--gold);color:#111;font-size:11px;padding:6px 15px" onclick="filterTab('office')">Shop Now</button>
+  </div>
+  <!-- Right bottom -->
+  <div class="h-side" style="background:linear-gradient(135deg,#e8f5e9,#c8e6c9)">
+    <div class="ico">🎒</div>
+    <div class="tag" style="color:#2e7d32">For Students</div>
+    <h2 style="color:var(--primary);font-size:16px">School Stationery</h2>
+    <p style="color:var(--muted);font-size:11px">Books, bags,<br>geometry sets &amp; more</p>
+    <button class="h-btn" style="background:#2e7d32;color:#fff;font-size:11px;padding:6px 15px" onclick="filterTab('school')">Shop Now</button>
+  </div>
+</div>
+
+<!-- PROMO STRIP -->
+<div class="promo-strip">
+  <div class="pi"><div class="pio">🚚</div><div><strong>Free Delivery</strong><span>Within Dahod city</span></div></div>
+  <div class="pi"><div class="pio">✅</div><div><strong>100% Genuine</strong><span>All authentic products</span></div></div>
+  <div class="pi"><div class="pio">📞</div><div><strong>Easy Support</strong><span>Call: 094287 78971</span></div></div>
+  <div class="pi"><div class="pio">💳</div><div><strong>UPI / Cash / Card</strong><span>Multiple payment options</span></div></div>
+</div>
+
+<!-- CATEGORIES -->
+<section class="sec" id="cat-sec">
+  <div class="sec-title">🗂 Shop by Categories</div>
+  <div class="cat-tiles">
+    <div class="cat-tile" onclick="filterTab('books')"><div class="ctile-img" style="background:#fff8e1">📚</div><div class="ctile-name">Books</div></div>
+    <div class="cat-tile" onclick="filterTab('school')"><div class="ctile-img" style="background:#e3f2fd">🎒</div><div class="ctile-name">School</div></div>
+    <div class="cat-tile" onclick="filterTab('office')"><div class="ctile-img" style="background:#fff3e0">🗂</div><div class="ctile-name">Office</div></div>
+    <div class="cat-tile" onclick="filterTab('art')"><div class="ctile-img" style="background:#fce4ec">🎨</div><div class="ctile-name">Art &amp; Craft</div></div>
+    <div class="cat-tile" onclick="filterTab('party')"><div class="ctile-img" style="background:#e8f5e9">🎉</div><div class="ctile-name">Party</div></div>
+    <div class="cat-tile" onclick="filterTab('children')"><div class="ctile-img" style="background:#f3e5f5">🧒</div><div class="ctile-name">Children</div></div>
+    <div class="cat-tile" onclick="filterTab('drawing')"><div class="ctile-img" style="background:#e0f7fa">✏️</div><div class="ctile-name">Drawing</div></div>
+  </div>
+</section>
+
+<!-- BRAND BAR -->
+<div class="brand-bar">
+  <div class="bl">Top Brands :</div>
+  <div class="brand-chip">DOMS</div>
+  <div class="brand-chip">Navneet</div>
+  <div class="brand-chip">Camlin</div>
+  <div class="brand-chip">Faber-Castell</div>
+  <div class="brand-chip">Staedtler</div>
+  <div class="brand-chip">Classmate</div>
+  <div class="brand-chip">Cello</div>
+  <div class="brand-chip">Apsara</div>
+  <div class="brand-chip">Natraj</div>
+  <div class="brand-chip">Fevicol</div>
+</div>
+
+<!-- PRODUCTS -->
+<section class="sec" id="prod-sec">
+  <div class="sec-title">🛒 Top Selling Products</div>
+  <div class="tabs-hd">
+    <button class="tab-b active" onclick="switchTab('all',this)">All Products</button>
+    <button class="tab-b" onclick="switchTab('books',this)">📚 Books</button>
+    <button class="tab-b" onclick="switchTab('school',this)">🎒 School</button>
+    <button class="tab-b" onclick="switchTab('office',this)">🗂 Office</button>
+    <button class="tab-b" onclick="switchTab('art',this)">🎨 Art &amp; Craft</button>
+    <button class="tab-b" onclick="switchTab('party',this)">🎉 Party</button>
+    <button class="tab-b" onclick="switchTab('children',this)">🧒 Children</button>
+    <button class="tab-b" onclick="switchTab('drawing',this)">✏️ Drawing</button>
+  </div>
+  <div class="tab-panel active" id="tp-all"></div>
+  <div class="tab-panel" id="tp-books"></div>
+  <div class="tab-panel" id="tp-school"></div>
+  <div class="tab-panel" id="tp-office"></div>
+  <div class="tab-panel" id="tp-art"></div>
+  <div class="tab-panel" id="tp-party"></div>
+  <div class="tab-panel" id="tp-children"></div>
+  <div class="tab-panel" id="tp-drawing"></div>
+</section>
+
+<!-- WIDE BANNER -->
+<div class="wide-banner">
+  <div class="wb-text">
+    <div class="tag">For Young Learners</div>
+    <h2>Books &amp; Stationery for <em>Every Child</em></h2>
+    <p>Colourful crayons, activity books, school bags, geometry kits — everything your child needs for a bright future.</p>
+  </div>
+  <div class="wb-emo"><span>🎒</span><span>📐</span><span>🖍️</span><span>📓</span></div>
+  <div style="flex-shrink:0"><button class="btn-g" onclick="filterTab('children')">Shop Kids' Corner →</button></div>
+</div>
+
+<!-- STORE INFO -->
+<section class="sec" style="background:var(--light)">
+  <div class="sec-title">📍 Visit Our Store</div>
+  <div class="store-grid">
+    <div class="si-card"><div class="si-ico">📍</div><div><div class="si-title">Address</div><div class="si-body">Stesan Road, nr. Ratalami Sev Bhandar,<br>Burhani Society, Shidhpur,<br>Dahod, Gujarat 389151</div></div></div>
+    <div class="si-card"><div class="si-ico">📞</div><div><div class="si-title">Contact Us</div><div class="si-big">094287 78971</div><div class="si-body" style="margin-top:.3rem">Mon–Sat: 9am – 8pm</div></div></div>
+    <div class="si-card dark"><div class="si-ico">⭐</div><div><div class="si-title">Our Rating</div><div class="si-big">5.0 / 5.0</div><div class="si-body" style="margin-top:.3rem">30+ years · Trusted by Dahod</div></div></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="fg">
+    <div>
+      <div class="fl-main">Kutbi <span>Book Depot</span></div>
+      <div class="fd">Your one-stop solution for books, stationery, art supplies and party items in Dahod. Trusted by thousands of families since 1990.</div>
+      <div class="fc">
+        <p><span class="fc-ico">📍</span> Stesan Road, Burhani Society, Dahod, Gujarat 389151</p>
+        <p><span class="fc-ico">📞</span> 094287 78971</p>
+        <p><span class="fc-ico">⭐</span> 5.0 Rating · 30+ Years in Business</p>
+      </div>
+    </div>
+    <div class="fcol"><h4>Shop</h4><ul><li><a href="#">Books</a></li><li><a href="#">School Supplies</a></li><li><a href="#">Office Stationery</a></li><li><a href="#">Art &amp; Craft</a></li><li><a href="#">Party Items</a></li><li><a href="#">Drawing Material</a></li></ul></div>
+    <div class="fcol"><h4>Top Brands</h4><ul><li><a href="#">DOMS</a></li><li><a href="#">Navneet</a></li><li><a href="#">Camlin</a></li><li><a href="#">Faber-Castell</a></li><li><a href="#">Classmate</a></li><li><a href="#">Cello</a></li></ul></div>
+    <div class="fcol"><h4>Information</h4><ul><li><a href="#">About Us</a></li><li><a href="#">Contact</a></li><li><a href="#">Shipping Policy</a></li><li><a href="#">Return Policy</a></li><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms &amp; Conditions</a></li></ul></div>
+  </div>
+  <div class="fbot">
+    <span>© 2025 Kutbi Book Depot, Dahod, Gujarat. All rights reserved.</span>
+    <span>Designed with ♥ for Book Lovers</span>
+  </div>
+</footer>
+
+<!-- CART SIDEBAR -->
+<div class="overlay" id="overlay" onclick="toggleCart()"></div>
+<div class="cart-sb" id="cartSb">
+  <div class="csb-head"><h3>🛒 My Shopping Cart</h3><button class="csb-close" onclick="toggleCart()">✕</button></div>
+  <div class="csb-body" id="csb-body">
+    <div class="csb-empty" id="csb-empty"><div class="eico">🛒</div><p>Your cart is empty.<br>Start adding products!</p></div>
+  </div>
+  <div class="csb-foot" id="csb-foot" style="display:none">
+    <div id="free-del-banner" style="display:none;background:#e8f5e9;border:1px solid #a5d6a7;padding:.6rem .9rem;border-radius:3px;margin-bottom:.8rem;font-size:11.5px;color:#2d7a4f;font-weight:600;text-align:center">
+      🎉 You qualify for FREE delivery!
+    </div>
+    <div id="near-free-banner" style="display:none;background:#fff8e1;border:1px solid #ffe082;padding:.6rem .9rem;border-radius:3px;margin-bottom:.8rem;font-size:11.5px;color:#f57c00;font-weight:500;text-align:center"></div>
+    <div class="ctrow"><span>Subtotal</span><span id="cSub">₹0</span></div>
+    <div class="ctrow"><span>Delivery Charges</span><span id="cDel" style="font-weight:600">₹50</span></div>
+    <div class="cgrand"><span>Grand Total</span><span id="cGrand">₹0</span></div>
+    <button class="co-btn" onclick="openPay()">Proceed to Checkout →</button>
+  </div>
+</div>
+
+<!-- PAYMENT MODAL -->
+<div class="modal-ov" id="payModal">
+  <div class="modal" style="width:480px">
+
+    <!-- STEP 1: SELECT METHOD -->
+    <div id="payForm">
+      <div class="mhd"><h3>💳 Complete Your Payment</h3><button class="mclose" onclick="closePay()">✕</button></div>
+      <div class="mbd">
+        <div class="pay-box"><div class="plbl">Amount to Pay</div><div class="pamt" id="mAmt">₹0</div></div>
+        <div class="pm-lbl">Select Payment Method</div>
+        <div class="pm-list">
+          <div class="pm-opt sel" id="po-upi" onclick="selPay('upi')">
+            <div class="pmdot" id="pd-upi"></div><div class="pmico">📱</div>
+            <div><div class="pmnm">UPI Payment</div><div class="pmds">PhonePe · GPay · Paytm · BHIM · Any UPI App</div></div>
+          </div>
+          <div class="pm-opt" id="po-cod" onclick="selPay('cod')">
+            <div class="pmdot" id="pd-cod"></div><div class="pmico">💵</div>
+            <div><div class="pmnm">Cash on Delivery</div><div class="pmds">Pay when you receive your order</div></div>
+          </div>
+          <div class="pm-opt" id="po-card" onclick="selPay('card')">
+            <div class="pmdot" id="pd-card"></div><div class="pmico">💳</div>
+            <div><div class="pmnm">Debit / Credit Card</div><div class="pmds">Visa · Mastercard · RuPay</div></div>
+          </div>
+        </div>
+        <button class="pay-main-btn" onclick="goToUpiScreen()">Continue →</button>
+      </div>
+    </div>
+
+    <!-- STEP 2: UPI PAYMENT SCREEN -->
+    <div class="upi-screen" id="upiScreen">
+      <div class="upi-screen-hd" style="margin:0;border-radius:3px 3px 0 0">
+        <h3>📱 Pay via UPI</h3>
+        <button class="mclose" onclick="closePay()">✕</button>
+      </div>
+      <div style="padding:1.2rem 1.4rem">
+
+        <!-- Store card -->
+        <div class="upi-store-card">
+          <div class="upi-store-ico">📚</div>
+          <div class="upi-store-info">
+            <div class="sname">Kutbi Book Depot</div>
+            <div class="stype">Stesan Road, Burhani Society, Dahod, Gujarat</div>
+          </div>
+        </div>
+
+        <!-- Amount -->
+        <div class="upi-amt-display">
+          <div class="albl">💰 Total Amount to Pay</div>
+          <div class="aval" id="upiAmt">₹0</div>
+        </div>
+
+        <!-- How to pay steps -->
+        <div class="upi-steps">
+          <div class="upi-step"><div class="snum">1</div><div class="stxt">Copy UPI ID or Scan QR</div></div>
+          <div class="step-arrow">›</div>
+          <div class="upi-step"><div class="snum">2</div><div class="stxt">Open your UPI App</div></div>
+          <div class="step-arrow">›</div>
+          <div class="upi-step"><div class="snum">3</div><div class="stxt">Enter amount &amp; Pay</div></div>
+          <div class="step-arrow">›</div>
+          <div class="upi-step"><div class="snum">4</div><div class="stxt">Click "I've Paid" below</div></div>
+        </div>
+
+        <!-- UPI ID -->
+        <div class="upi-id-box">
+          <div>
+            <div class="uid-lbl">📲 Pay to UPI ID</div>
+            <div class="uid-val">9484587239@okbizaxis</div>
+          </div>
+          <button class="copy-btn" id="copyBtn" onclick="copyUPI()">📋 Copy</button>
+        </div>
+
+        <!-- QR Code -->
+        <div class="qr-wrap">
+          <div class="qlbl">Or Scan QR Code</div>
+          <div class="qr-box">
+            <div id="qrCanvas"></div>
+          </div>
+          <div style="font-size:11px;color:var(--muted);margin-top:.5rem">Scan with any UPI app to pay</div>
+        </div>
+
+        <!-- UPI App quick links -->
+        <div class="upi-apps">
+          <div class="upi-app" onclick="openUpiApp('phonepe')"><div class="aico">💜</div><div class="aname">PhonePe</div></div>
+          <div class="upi-app" onclick="openUpiApp('gpay')"><div class="aico">🟢</div><div class="aname">GPay</div></div>
+          <div class="upi-app" onclick="openUpiApp('paytm')"><div class="aico">💙</div><div class="aname">Paytm</div></div>
+          <div class="upi-app" onclick="openUpiApp('bhim')"><div class="aico">🇮🇳</div><div class="aname">BHIM</div></div>
+          <div class="upi-app" onclick="openUpiApp('other')"><div class="aico">📱</div><div class="aname">Other</div></div>
+        </div>
+
+        <button class="upi-confirm-btn" onclick="confirmUpiPaid()">
+          ✅ I've Paid — Confirm Order
+        </button>
+        <div style="text-align:center;margin-top:.7rem">
+          <span style="font-size:11px;color:var(--muted)">← </span>
+          <button onclick="showPayForm()" style="background:none;border:none;cursor:pointer;font-size:11.5px;color:var(--primary);font-family:'Poppins',sans-serif;font-weight:500">Change Payment Method</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- STEP 2b: COD / CARD simple confirm -->
+    <div id="otherPayScreen" style="display:none">
+      <div class="mhd" style="border-radius:3px 3px 0 0"><h3 id="otherPayTitle">💵 Cash on Delivery</h3><button class="mclose" onclick="closePay()">✕</button></div>
+      <div class="mbd">
+        <div class="pay-box"><div class="plbl">Order Total</div><div class="pamt" id="otherAmt">₹0</div></div>
+        <div style="background:var(--light);border:1px solid var(--border);padding:1rem;border-radius:3px;margin-bottom:1rem;font-size:13px;color:var(--muted);line-height:1.7" id="otherPayNote"></div>
+        <button class="pay-main-btn" onclick="processPay()">Confirm Order →</button>
+        <div style="text-align:center;margin-top:.7rem">
+          <button onclick="showPayForm()" style="background:none;border:none;cursor:pointer;font-size:11.5px;color:var(--primary);font-family:'Poppins',sans-serif;font-weight:500">← Change Payment Method</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SUCCESS with Order Summary -->
+    <div class="success-p" id="successP">
+      <div style="background:var(--primary);padding:1.2rem 1.5rem;display:flex;align-items:center;justify-content:space-between;border-radius:3px 3px 0 0;margin:-1px -1px 0">
+        <h3 style="color:#fff;font-size:15px;font-weight:600">✅ Order Confirmed!</h3>
+        <button class="mclose" onclick="closePay();clearCart()">✕</button>
+      </div>
+      <div style="padding:1.4rem">
+        <!-- Success badge -->
+        <div style="text-align:center;padding:1rem 0 .5rem">
+          <div style="font-size:3.5rem;margin-bottom:.4rem">🎉</div>
+          <div style="font-size:16px;font-weight:700;color:var(--primary);margin-bottom:.2rem">Thank You for Your Order!</div>
+          <div class="oid" id="oId" style="font-size:12px;color:var(--accent);font-weight:700;letter-spacing:.06em;margin-bottom:.3rem"></div>
+          <div style="font-size:12px;color:var(--muted)">A confirmation has been noted. Delivery in 1–2 business days.</div>
+        </div>
+
+        <!-- Order Items Summary -->
+        <div style="border:1px solid var(--border);border-radius:3px;overflow:hidden;margin:1rem 0">
+          <div style="background:var(--light);padding:.6rem 1rem;font-size:11.5px;font-weight:700;color:var(--primary);text-transform:uppercase;letter-spacing:.06em;border-bottom:1px solid var(--border)">📦 Order Items</div>
+          <div id="orderItemsList" style="max-height:180px;overflow-y:auto"></div>
+        </div>
+
+        <!-- Price Breakdown -->
+        <div style="background:var(--light);border:1px solid var(--border);border-radius:3px;padding:.9rem 1rem;margin-bottom:1rem">
+          <div style="display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin-bottom:.35rem"><span>Subtotal</span><span id="sumSub">₹0</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:12.5px;color:var(--muted);margin-bottom:.5rem"><span>Delivery Charges</span><span id="sumDel">₹0</span></div>
+          <div style="display:flex;justify-content:space-between;font-size:15px;font-weight:700;color:var(--primary);padding-top:.5rem;border-top:1px solid var(--border)"><span>Total Paid</span><span id="sumTotal">₹0</span></div>
+        </div>
+
+        <!-- Payment method used -->
+        <div style="display:flex;align-items:center;gap:.6rem;background:#e8f5e9;border:1px solid #a5d6a7;padding:.7rem 1rem;border-radius:3px;margin-bottom:1rem;font-size:12.5px;color:#2d7a4f;font-weight:600">
+          <span id="payMethodIcon">📱</span><span id="payMethodText">Paid via UPI</span>
+        </div>
+
+        <!-- Contact -->
+        <div style="font-size:11.5px;color:var(--muted);text-align:center;margin-bottom:1rem;line-height:1.7">
+          📞 Questions? Call us at <strong style="color:var(--primary)">094287 78971</strong><br>
+          📍 Stesan Road, Burhani Society, Dahod, Gujarat
+        </div>
+
+        <div style="display:flex;gap:.8rem">
+          <button class="cont-btn" style="flex:1;margin-top:0" onclick="closePay();clearCart()">Continue Shopping</button>
+          <button onclick="closePay();clearCart();toggleOrders()" style="flex:1;background:var(--light);color:var(--primary);border:1.5px solid var(--primary);padding:10px;font-size:12px;font-weight:700;cursor:pointer;font-family:'Poppins',sans-serif;transition:all .2s" onmouseover="this.style.background='var(--primary)';this.style.color='#fff'" onmouseout="this.style.background='var(--light)';this.style.color='var(--primary)'">📦 View My Orders</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MY ORDERS MODAL -->
+<div class="modal-ov" id="ordersModal">
+  <div class="modal" style="width:520px;max-height:85vh;overflow-y:auto">
+    <div class="mhd" style="border-radius:3px 3px 0 0;position:sticky;top:0;z-index:10">
+      <h3>📦 My Orders</h3>
+      <button class="mclose" onclick="toggleOrders()">✕</button>
+    </div>
+    <div id="ordersBody" style="padding:1.2rem">
+      <div id="ordersEmpty" style="text-align:center;padding:3rem 1rem;color:var(--muted)">
+        <div style="font-size:3rem;margin-bottom:.8rem;opacity:.35">📦</div>
+        <p style="font-size:13px">No orders yet.<br>Shop now and your orders will appear here!</p>
+        <button onclick="toggleOrders()" style="margin-top:1rem;background:var(--primary);color:#fff;border:none;padding:9px 22px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Poppins',sans-serif">Start Shopping</button>
+      </div>
+      <div id="ordersList"></div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✓ <span id="tMsg">Added to cart</span></div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+const products=[
+  {id:1,name:"The Alchemist",brand:"Paulo Coelho",price:249,old:299,e:"⚗️",cat:"books",d:17,bg:"#fff8e1"},
+  {id:2,name:"Wings of Fire",brand:"A.P.J. Abdul Kalam",price:195,old:250,e:"🚀",cat:"books",d:22,bg:"#e3f2fd"},
+  {id:3,name:"Quran Majeed (Urdu)",brand:"Translation",price:399,old:499,e:"📿",cat:"books",d:20,bg:"#f3e5f5"},
+  {id:4,name:"Class 10 Maths NCERT",brand:"NCERT",price:185,old:null,e:"📐",cat:"books",d:null,bg:"#e8f5e9"},
+  {id:5,name:"Class 12 Physics",brand:"H.C. Verma",price:425,old:null,e:"⚛️",cat:"books",d:null,bg:"#e0f7fa"},
+  {id:6,name:"Classmate Notebooks (6 Pack)",brand:"ITC Classmate",price:120,old:150,e:"📓",cat:"school",d:20,bg:"#fff9c4"},
+  {id:7,name:"Geometry Box Premium",brand:"Faber-Castell",price:185,old:220,e:"📐",cat:"school",d:16,bg:"#e8f5e9"},
+  {id:8,name:"School Bag — Blue",brand:"Wildcraft",price:850,old:1200,e:"🎒",cat:"school",d:29,bg:"#e3f2fd"},
+  {id:9,name:"Glue Sticks Pack of 5",brand:"Fevicol",price:65,old:null,e:"🔧",cat:"school",d:null,bg:"#fce4ec"},
+  {id:10,name:"Staedtler HB Pencils (12)",brand:"Staedtler",price:95,old:null,e:"✏️",cat:"school",d:null,bg:"#f3e5f5"},
+  {id:11,name:"Cello Ball Pens (10 Pack)",brand:"Cello",price:55,old:70,e:"🖊️",cat:"office",d:21,bg:"#f3e5f5"},
+  {id:12,name:"Document Folder A4",brand:"Navneet",price:95,old:null,e:"📁",cat:"office",d:null,bg:"#e3f2fd"},
+  {id:13,name:"Stapler + Pins Set",brand:"Kangaro",price:145,old:180,e:"📌",cat:"office",d:19,bg:"#fff3e0"},
+  {id:14,name:"Whiteboard Markers Set",brand:"Camlin",price:75,old:null,e:"🖍️",cat:"office",d:null,bg:"#e8f5e9"},
+  {id:15,name:"Punch Machine",brand:"Kangaro",price:165,old:200,e:"🕳️",cat:"office",d:17,bg:"#fce4ec"},
+  {id:16,name:"Apsara Colour Pencils 24",brand:"Apsara",price:65,old:85,e:"🎨",cat:"art",d:24,bg:"#fce4ec"},
+  {id:17,name:"Watercolour Paint Set 24",brand:"Camlin",price:145,old:180,e:"🖌️",cat:"art",d:19,bg:"#e0f7fa"},
+  {id:18,name:"Acrylic Colour Set",brand:"Camel",price:260,old:320,e:"🎭",cat:"art",d:19,bg:"#fff9c4"},
+  {id:19,name:"Sketch Pens 24 Shades",brand:"DOMS",price:89,old:110,e:"✒️",cat:"art",d:19,bg:"#f3e5f5"},
+  {id:20,name:"Oil Pastels 25 Shades",brand:"Camlin",price:110,old:140,e:"🖍️",cat:"art",d:21,bg:"#e8f5e9"},
+  {id:21,name:"Birthday Balloon Pack 30",brand:"Generic",price:99,old:150,e:"🎈",cat:"party",d:34,bg:"#fce4ec"},
+  {id:22,name:"HBD Foil Banner + 30 Balloons",brand:"Kutbi Store",price:299,old:600,e:"🎉",cat:"party",d:50,bg:"#fff3e0"},
+  {id:23,name:"Birthday Combo Kit Theme-1",brand:"Kutbi Store",price:149,old:300,e:"🎂",cat:"party",d:50,bg:"#e8f5e9"},
+  {id:24,name:"Chrome Balloons (10 pcs)",brand:"Generic",price:79,old:null,e:"✨",cat:"party",d:null,bg:"#e3f2fd"},
+  {id:25,name:"Birthday Combo Theme-2",brand:"Kutbi Store",price:149,old:300,e:"🎀",cat:"party",d:50,bg:"#f3e5f5"},
+  {id:26,name:"Children's Atlas",brand:"Oxford Press",price:325,old:400,e:"🗺️",cat:"children",d:19,bg:"#e0f7fa"},
+  {id:27,name:"Colouring Activity Book",brand:"Navneet",price:75,old:null,e:"🖍️",cat:"children",d:null,bg:"#fce4ec"},
+  {id:28,name:"Story Books Set (5 Books)",brand:"Penguin",price:245,old:300,e:"📖",cat:"children",d:18,bg:"#fff9c4"},
+  {id:29,name:"Tracing Book A4",brand:"Navneet",price:55,old:null,e:"📝",cat:"children",d:null,bg:"#e8f5e9"},
+  {id:30,name:"Wax Crayons 32 Colours",brand:"Doms",price:75,old:90,e:"🖍️",cat:"drawing",d:17,bg:"#fce4ec"},
+  {id:31,name:"Drawing Book A4 (100 Pages)",brand:"Navneet",price:65,old:null,e:"📒",cat:"drawing",d:null,bg:"#e8f5e9"},
+  {id:32,name:"Canvas Drawing Board A3",brand:"Camel",price:195,old:240,e:"🖼️",cat:"drawing",d:19,bg:"#fff3e0"},
+  {id:33,name:"Drawing Brushes Set (12)",brand:"Camlin",price:120,old:150,e:"🖌️",cat:"drawing",d:20,bg:"#e3f2fd"},
+];
+
+let cart=[];
+let activePay='upi';
+
+function makeCard(p){
+  return `<div class="pc">
+    <div class="pc-img" style="background:${p.bg}">
+      <span>${p.e}</span>
+      ${p.d?`<span class="pc-disc">-${p.d}%</span>`:''}
+      <div class="pc-wish">♡</div>
+    </div>
+    <div class="pc-info">
+      <div class="pc-brand">${p.brand}</div>
+      <div class="pc-name">${p.name}</div>
+      <div class="pc-prow">
+        <span class="pc-price">₹${p.price}</span>
+        ${p.old?`<span class="pc-old">₹${p.old}</span>`:''}
+      </div>
+      <button class="pc-atc" id="atc-${p.id}" onclick="addToCart(${p.id})">+ Add to Cart</button>
+    </div>
+  </div>`;
+}
+
+['all','books','school','office','art','party','children','drawing'].forEach(tab=>{
+  const panel=document.getElementById(`tp-${tab}`);
+  const items=tab==='all'?products:products.filter(p=>p.cat===tab);
+  panel.innerHTML=items.map(makeCard).join('');
+});
+
+function switchTab(name,btn){
+  document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.tab-b').forEach(b=>b.classList.remove('active'));
+  document.getElementById(`tp-${name}`).classList.add('active');
+  if(btn)btn.classList.add('active');
+  else{const b=document.querySelector(`.tab-b[onclick*="'${name}'"]`);if(b)b.classList.add('active');}
+}
+function filterTab(name){
+  switchTab(name,null);
+  document.getElementById('prod-sec').scrollIntoView({behavior:'smooth'});
+}
+
+let openMenu=null;
+function toggleMenu(id){
+  const el=document.getElementById(`menu-${id}`);
+  if(openMenu&&openMenu!==el)openMenu.classList.remove('open');
+  el.classList.toggle('open');
+  openMenu=el.classList.contains('open')?el:null;
+}
+document.addEventListener('click',e=>{if(!e.target.closest('.mega-nav')&&openMenu){openMenu.classList.remove('open');openMenu=null;}});
+
+function addToCart(id){
+  const p=products.find(x=>x.id===id);
+  const ex=cart.find(x=>x.id===id);
+  if(ex)ex.qty++;else cart.push({...p,qty:1});
+  const btn=document.getElementById(`atc-${id}`);
+  if(btn){btn.textContent='✓ Added';btn.classList.add('added');setTimeout(()=>{btn.textContent='+ Add to Cart';btn.classList.remove('added');},1500);}
+  renderCart();
+  showToast(`"${p.name}" added`);
+}
+function renderCart(){
+  const total=cart.reduce((a,x)=>a+x.price*x.qty,0);
+  document.getElementById('cartBadge').textContent=cart.reduce((a,x)=>a+x.qty,0);
+  const body=document.getElementById('csb-body');
+  const empty=document.getElementById('csb-empty');
+  const foot=document.getElementById('csb-foot');
+  if(!cart.length){empty.style.display='block';foot.style.display='none';body.innerHTML='';body.appendChild(empty);return;}
+  empty.style.display='none';foot.style.display='block';body.innerHTML='';
+  cart.forEach(item=>{
+    const d=document.createElement('div');d.className='crow';
+    d.innerHTML=`<div class="crow-img">${item.e}</div>
+      <div class="crow-info">
+        <div class="crow-name">${item.name}</div>
+        <div class="crow-brand">${item.brand}</div>
+        <div class="crow-ctrl">
+          <button class="qb" onclick="chQ(${item.id},-1)">−</button>
+          <span class="qv">${item.qty}</span>
+          <button class="qb" onclick="chQ(${item.id},1)">+</button>
+          <button class="rmb" onclick="rmItem(${item.id})">Remove</button>
+        </div>
+      </div>
+      <div class="crow-price">₹${item.price*item.qty}</div>`;
+    body.appendChild(d);
+  });
+  document.getElementById('cSub').textContent=`₹${total}`;
+  document.getElementById('cGrand').textContent=`₹${total}`;
+}
+function chQ(id,d){const it=cart.find(x=>x.id===id);if(!it)return;it.qty+=d;if(it.qty<=0)cart=cart.filter(x=>x.id!==id);renderCart();}
+function rmItem(id){cart=cart.filter(x=>x.id!==id);renderCart();}
+function clearCart(){cart=[];renderCart();}
+function toggleCart(){document.getElementById('cartSb').classList.toggle('open');document.getElementById('overlay').classList.toggle('open');}
+function openPay(){
+  const t=cart.reduce((a,x)=>a+x.price*x.qty,0);
+  document.getElementById('mAmt').textContent=`₹${t}`;
+  showPayForm();
+  document.getElementById('payModal').classList.add('open');
+  toggleCart();
+}
+function closePay(){document.getElementById('payModal').classList.remove('open');}
+
+function showPayForm(){
+  document.getElementById('payForm').style.display='block';
+  document.getElementById('upiScreen').classList.remove('show');
+  document.getElementById('otherPayScreen').style.display='none';
+  document.getElementById('successP').classList.remove('show');
+}
+
+function selPay(pm){
+  activePay=pm;
+  ['upi','cod','card'].forEach(x=>document.getElementById(`po-${x}`).classList.remove('sel'));
+  document.getElementById(`po-${pm}`).classList.add('sel');
+}
+
+function goToUpiScreen(){
+  const t=cart.reduce((a,x)=>a+x.price*x.qty,0);
+  document.getElementById('payForm').style.display='none';
+  document.getElementById('successP').classList.remove('show');
+  if(activePay==='upi'){
+    document.getElementById('upiAmt').textContent=`₹${t}`;
+    document.getElementById('upiScreen').classList.add('show');
+    drawQR(t);
+  } else {
+    document.getElementById('otherAmt').textContent=`₹${t}`;
+    document.getElementById('otherPayTitle').textContent = activePay==='cod'?'💵 Cash on Delivery':'💳 Card Payment';
+    document.getElementById('otherPayNote').innerHTML = activePay==='cod'
+      ? '✅ Your order will be placed now.<br>💰 Please keep exact cash of <strong>₹'+t+'</strong> ready at the time of delivery.<br>🚚 Delivery within Dahod: <strong>1–2 business days</strong>'
+      : '💳 Please have your Debit/Credit card ready.<br>Our delivery executive will bring a POS machine for card payment at the time of delivery.<br>Amount: <strong>₹'+t+'</strong>';
+    document.getElementById('otherPayScreen').style.display='block';
+  }
+}
+
+// ── REAL QR CODE GENERATOR ──
+let qrInstance = null;
+function drawQR(amount){
+  const upiStr = `upi://pay?pa=9484587239@okbizaxis&pn=Kutbi%20Book%20Depot&am=${amount}&cu=INR&tn=Order%20Payment`;
+  const container = document.getElementById('qrCanvas');
+  container.innerHTML = ''; // clear previous
+  qrInstance = new QRCode(container, {
+    text: upiStr,
+    width: 160,
+    height: 160,
+    colorDark: '#1a3c6e',
+    colorLight: '#ffffff',
+    correctLevel: QRCode.CorrectLevel.H
+  });
+}
+
+function copyUPI(){
+  const upiId='9484587239@okbizaxis';
+  navigator.clipboard.writeText(upiId).then(()=>{
+    const btn=document.getElementById('copyBtn');
+    btn.textContent='✅ Copied!';btn.classList.add('copied');
+    setTimeout(()=>{btn.textContent='📋 Copy';btn.classList.remove('copied');},2000);
+  }).catch(()=>{
+    showToast('UPI ID: 9484587239@okbizaxis');
+  });
+}
+
+function openUpiApp(app){
+  const t=cart.reduce((a,x)=>a+x.price*x.qty,0);
+  const upiLink=`upi://pay?pa=9484587239@okbizaxis&pn=Kutbi+Book+Depot&am=${t}&cu=INR&tn=Order+Payment`;
+  const urls={phonepe:`phonepe://pay?pa=9484587239@okbizaxis&pn=Kutbi+Book+Depot&am=${t}&cu=INR`,gpay:`tez://upi/pay?pa=9484587239@okbizaxis&pn=Kutbi+Book+Depot&am=${t}&cu=INR`,paytm:`paytmmp://pay?pa=9484587239@okbizaxis&pn=Kutbi+Book+Depot&am=${t}&cu=INR`,bhim:upiLink,other:upiLink};
+  try{window.location.href=urls[app]||upiLink;}catch(e){}
+  showToast('Opening '+app.charAt(0).toUpperCase()+app.slice(1)+'…');
+}
+
+function confirmUpiPaid(){
+  document.getElementById('upiScreen').classList.remove('show');
+  processPay();
+}
+
+function processPay(){
+  document.getElementById('payForm').style.display='none';
+  document.getElementById('upiScreen').classList.remove('show');
+  document.getElementById('otherPayScreen').style.display='none';
+  const oid='KBD-'+Math.random().toString(36).substr(2,8).toUpperCase();
+  document.getElementById('oId').textContent=`Order ID: ${oid}`;
+  document.getElementById('successP').classList.add('show');
+}
+function showToast(msg){
+  const t=document.getElementById('toast');
+  document.getElementById('tMsg').textContent=msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),2500);
+}
+renderCart();
+</script>
+</body>
+</html>
